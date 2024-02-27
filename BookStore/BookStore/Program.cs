@@ -1,5 +1,7 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Hosting;
 
+var builder = WebApplication.CreateBuilder(args);
+var startup = new Startup(builder.Configuration);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -15,6 +17,13 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+//app.Use(async(contex, next) =>
+//{
+//    await contex.Response.WriteAsync("Welcome To my first MiddleWare");
+//    await next();
+//    await contex.Response.WriteAsync("Welcome To my first MiddleWare");
+//});
 
 app.UseRouting();
 
